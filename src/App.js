@@ -1,6 +1,7 @@
 import React from "react"
 
 import NavBar from "./components/NavBar/NavBar";
+import Map from "./components/Map/Map";
 
 import './App.css';
 
@@ -8,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <NavBar/>
-      <h1>Peer App</h1>
+      <Map/>
     </div>
   );
 }

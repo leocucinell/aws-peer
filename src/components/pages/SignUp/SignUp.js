@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { Redirect } from "react-router";
+import bcrypt from "bcryptjs"
 
 import backend from "../../../apis/backend";
 
@@ -16,26 +17,37 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        
-        //Here I am going to create a user within my dynamodb database
-        backend.post('user/create', {
-            username: username,
-            firstname: firstname,
-            lastname: lastname,
-            email: email,
-            password: password,
-            friends: []
-        }, {
-            headers: {
-                "Access-Control-Allow-Origin": "*"
+        //hash and salt the password
+        bcrypt.genSalt(10, (err, salt) => {
+            if(err){
+                setSubError(true);
+                return;
             }
-        }).then(() => {
-            setRedirectHome(true);
-        }).catch((error) => {
-            console.log(error);
-            setSubError(true);
+            bcrypt.hash(password, salt, (err, hash) => {
+                if(err){
+                    setSubError(true);
+                    return;
+                }
+                //Here I am going to create a user within my dynamodb database
+                backend.post('user/create', {
+                    username: username,
+                    firstname: firstname,
+                    lastname: lastname,
+                    email: email,
+                    password: hash,
+                    friends: []
+                }, {
+                    headers: {
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                }).then(() => {
+                    setRedirectHome(true);
+                }).catch((error) => {
+                    console.log(error);
+                    setSubError(true);
+                });
+            });
         });
-        
     }
 
     const renderError = () => {

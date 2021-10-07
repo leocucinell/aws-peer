@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { Redirect } from "react-router";
 
 import backend from "../../../apis/backend";
 
@@ -10,6 +11,8 @@ const SignUp = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [redirectHome, setRedirectHome] = useState(false);
+    const [subError, setSubError] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -17,8 +20,8 @@ const SignUp = () => {
         //Here I am going to create a user within my dynamodb database
         backend.post('user/create', {
             username: username,
-            firstname: "HELLO",
-            lastname: "from peer",
+            firstname: firstname,
+            lastname: lastname,
             email: email,
             password: password,
             friends: []
@@ -26,13 +29,32 @@ const SignUp = () => {
             headers: {
                 "Access-Control-Allow-Origin": "*"
             }
+        }).then(() => {
+            setRedirectHome(true);
+        }).catch((error) => {
+            console.log(error);
+            setSubError(true);
         });
-        //after I create the user, I am going to go back to the login page
-
+        
     }
 
+    const renderError = () => {
+        return(
+            <div className="submission-error___container">
+                <h1>Error submitting</h1>
+            </div>
+        );
+    }
+
+    
+    if(redirectHome){
+        return(
+            <Redirect to="/"/>
+        );
+    }
     return(
         <div className="sign-up___container">
+            {subError ? renderError() : null}
             <form onSubmit={handleSubmit} className="sign-up___form">
                 <input onChange={(e) => {setFirstname(e.target.value)}} value={firstname} type="text" name="firstname" placeholder="first name" />
                 <input onChange={(e) => {setLastname(e.target.value)}} value={lastname} type="text" name="lastname" placeholder="last name" />

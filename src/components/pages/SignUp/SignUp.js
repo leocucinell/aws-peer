@@ -61,7 +61,7 @@ const SignUp = () => {
     
     if(redirectHome){
         return(
-            <Redirect to="/"/>
+            <Redirect to="/login"/>
         );
     }
     return(

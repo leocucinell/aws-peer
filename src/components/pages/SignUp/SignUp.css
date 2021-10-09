@@ -1,0 +1,31 @@
+/*SECTION: Error Handler*/
+.submission-error___container{
+
+}
+/*SECTION: Main Form container*/
+.sign-up___container{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+}
+
+.sign-up___form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*Form positioning*/
+    width: 500px;
+}
+
+.form-inputs___container{
+    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.form-input{
+    padding: 5px;
+    margin-bottom: 10px;
+}

@@ -34,9 +34,6 @@ const Map = () => {
 
     return(
         <div className="mapbox-container">
-            <div>
-                Longitude: {lng} || Latitude: {lat} || Zoom: {zoom}
-            </div>
             <div ref={mapContainer} className="map-container"></div>
         </div>
     );

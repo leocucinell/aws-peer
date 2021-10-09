@@ -68,12 +68,14 @@ const SignUp = () => {
         <div className="sign-up___container">
             {subError ? renderError() : null}
             <form onSubmit={handleSubmit} className="sign-up___form">
-                <input onChange={(e) => {setFirstname(e.target.value)}} value={firstname} type="text" name="firstname" placeholder="first name" />
-                <input onChange={(e) => {setLastname(e.target.value)}} value={lastname} type="text" name="lastname" placeholder="last name" />
-                <input onChange={(e) => {setUsername(e.target.value)}} value={username} type="text" name="username" placeholder="user name" />
-                <input onChange={(e) => {setEmail(e.target.value)}} value={email} type="email" name="email" placeholder="email" />
-                <input onChange={(e) => {setPassword(e.target.value)}} value={password} type="password" name="password" placeholder="password" />
-                <input type="submit" value="Submit"/>
+                <div className="form-inputs___container">
+                    <input className="form-input" onChange={(e) => {setFirstname(e.target.value)}} value={firstname} type="text" name="firstname" placeholder="first name" />
+                    <input className="form-input" onChange={(e) => {setLastname(e.target.value)}} value={lastname} type="text" name="lastname" placeholder="last name" />
+                    <input className="form-input" onChange={(e) => {setUsername(e.target.value)}} value={username} type="text" name="username" placeholder="user name" />
+                    <input className="form-input" onChange={(e) => {setEmail(e.target.value)}} value={email} type="email" name="email" placeholder="email" />
+                    <input className="form-input" onChange={(e) => {setPassword(e.target.value)}} value={password} type="password" name="password" placeholder="password" />
+                    <input id="form-submit" type="submit" value="Submit"/>
+                </div>
             </form>
         </div>
     )

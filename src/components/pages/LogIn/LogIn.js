@@ -42,7 +42,7 @@ const LogIn = (props) => {
                     setDirect(true);
                 } else {
                     //Passowrd is incorrect -> Set the error state 
-                    console.log("PASSWORD INCORRECT!")
+                    console.log("PASSWORD INCORRECT!");
                     setLoginError(true);
                     return;
                 }
@@ -60,9 +60,11 @@ const LogIn = (props) => {
         <div className="log-in___container">
             {loginError ? <h3>Error logging in...</h3> : null}
             <form onSubmit={handleSubmit} className="log-in___form">
-                <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" name="email" placeholder="email" />
-                <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" name="password" placeholder="password" />
-                <input type="submit" value="Submit"/>
+                <div className="form-inputs___container">
+                    <input className="form-input" onChange={(e) => setEmail(e.target.value)} value={email} type="email" name="email" placeholder="email" />
+                    <input className="form-input" onChange={(e) => setPassword(e.target.value)} value={password} type="password" name="password" placeholder="password" />
+                    <input type="submit" value="Submit"/>
+                </div>
             </form>
         </div>
     );
